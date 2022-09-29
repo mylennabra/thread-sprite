@@ -62,13 +62,12 @@ public class ThreadEx extends JFrame{
         if(collide()==false){
             g.setColor(Color.cyan);
             g.drawImage(imagem[5],0, 0, getWidth(), getHeight(), this);     
-            
-            g.setColor(Color.orange);
-            
             g.drawImage(imagem[0], floor-=aux, getHeight()-150, getWidth()*80, 175, null);
-            
             g.drawImage(imagem[1], 400, ybomb+=aux, 40, 40, this);
             g.drawImage(imagem[2], x+=aux, getHeight()-100, 170, 80, this);
+            g.drawImage(imagem[2], x+1, getHeight()-100, 170, 80, this);
+                        
+            
             g.drawString("Km "+ x, getWidth()-200, 900);
 
         }else{

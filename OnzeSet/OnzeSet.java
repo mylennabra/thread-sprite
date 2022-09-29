@@ -57,14 +57,15 @@ public class OnzeSet extends JFrame{
     public void paint(Graphics g){
         
         if(collide()==false){
-            g.setColor(Color.cyan);
             g.drawImage(imagem[5],0, 0, getWidth(), getHeight(), this);     
             
             g.drawImage(imagem[2], 100, getHeight()-400, 240, 600, this);
+            
+            g.drawImage(imagem[1], xbomb-=aux, 100, 100, 100, this);
+            g.drawImage(imagem[1], xbomb, 100, 100, 100, this);
             //g.drawImage(imagem[0], 0, getHeight()-200, getWidth(), 200, this);
             
             
-            g.drawImage(imagem[1], xbomb-=aux, 100, 100, 100, this);
             g.drawString("Km "+ x, getWidth()-200, 900);
 
         }else{
