@@ -4,7 +4,7 @@ import javax.swing.*;
 
 
 public class ThreadEx extends JFrame{
-
+    
     int xbomb = getWidth();
     int ybomb = 0;
     int floor = 0;
@@ -19,29 +19,22 @@ public class ThreadEx extends JFrame{
     ImageIcon [] img = new ImageIcon[6];
 
     public ThreadEx() {
-        img[0] = new ImageIcon("floor2.png");
+        img[0] = new ImageIcon("0.png");
         imagem[0] = img[0].getImage();
-        img[1] = new ImageIcon("bomb.png");
+        img[1] = new ImageIcon("1.png");
         imagem[1] = img[1].getImage();
-        img[2] = new ImageIcon("car.png");
+        img[2] = new ImageIcon("2.png");
         imagem[2] = img[2].getImage();
-        img[3] = new ImageIcon("cloud.png");
-        imagem[3] = img[3].getImage();
-        img[4] = new ImageIcon("explosion.png");
+        img[4] = new ImageIcon("3.png");
         imagem[4] = img[4].getImage();
-        img[5] = new ImageIcon("background.jpg");
+        img[5] = new ImageIcon("4.jpg");
         imagem[5] = img[5].getImage();
-
-
-        // for(int i=0; i<=3; i++){
-        // }
-
 
         setSize(700,400); // Define tamanho do frame
         setVisible(true); // Torna o frame visivel
         setTitle("aaa"); // Definindo título pra janela 
         setLocationRelativeTo(null); // Definindo a posição da janela no centro da tela 
-        setResizable(false); // Bloqueado maximização e customização de tamanho
+        //setResizable(false); // Bloqueado maximização e customização de tamanho
         setVisible(true);
 
         showNotify();
@@ -57,12 +50,16 @@ public class ThreadEx extends JFrame{
         t = null;
     }      
 
+   
+
+
     public void paint(Graphics g){
         
         if(collide()==false){
             g.setColor(Color.cyan);
             g.drawImage(imagem[5],0, 0, getWidth(), getHeight(), this);     
             g.drawImage(imagem[0], floor-=aux, getHeight()-150, getWidth()*80, 175, null);
+
             g.drawImage(imagem[1], 400, ybomb+=aux, 40, 40, this);
             g.drawImage(imagem[2], x+=aux, getHeight()-100, 170, 80, this);
             g.drawImage(imagem[2], x+1, getHeight()-100, 170, 80, this);
@@ -95,27 +92,17 @@ public class ThreadEx extends JFrame{
 
     public Runnable t = new Runnable() {
         public void run() {
-            runtherandom();
-        }
-    };
-
-
-    public void runtherandom(){
-        while(exe){
-            while (!(yy>(getHeight()-80))){
-                xx+=1;
-                trycatch();
+            while(exe){
+                while (!(yy>(getHeight()-80))){
+                    xx+=1;
+                    try{
+                        Thread.sleep(80);
+                    }catch(Exception e){Thread.currentThread().interrupt();}
+                    repaint();
+                }
             }
         }
-    }
-
-    public void trycatch(){
-        try{
-            Thread.sleep(80);
-        }catch(Exception e){Thread.currentThread().interrupt();}
-        repaint();
-    }
-        
+    };
 
     public static void main(String [] args){
         ThreadEx d = new ThreadEx();
